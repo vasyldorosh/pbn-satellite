@@ -12,7 +12,7 @@ class PostStorage
         return $_SERVER['HTTP_HOST'];
     }
 
-    
+
     /**
      * @return array
      */

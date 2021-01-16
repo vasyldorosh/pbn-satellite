@@ -24,7 +24,7 @@ class Installer
         }
 
         // copy .env
-        file_put_contents(__DIR__ . '/../../../../.env', file_get_contents(__DIR__ . '/../resources/.env'));
+        file_put_contents(__DIR__ . '/../../../../.env', file_get_contents(__DIR__ . '/../resources/env'));
 
         // replace in index.php
         $indexFile = __DIR__ . '/../../../../index.php';

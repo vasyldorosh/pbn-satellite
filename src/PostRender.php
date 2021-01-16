@@ -4,6 +4,22 @@ namespace Vasyldorosh\PbnSatellite;
 
 class PostRender
 {
+    const TEMPLATE_LIST = '[posts][/posts]';
+
+    /**
+     * @param string $content
+     * @return string
+     */
+    public function replaceList(string $content): string
+    {
+        if (substr_count($content, self::TEMPLATE_LIST)) {
+            $posts = (new PostStorage)->getPosts();
+            $content = str_replace(self::TEMPLATE_LIST, $this->renderList($posts), $content);
+        }
+
+        return $content;
+    }
+
     /**
      * @param array $items
      * @return string
@@ -32,10 +48,6 @@ class PostRender
      */
     public function renderFile($_viewFile_,$_data_=null): string
     {
-        var_dump($_SERVER['DOCUMENT_ROOT']);
-        die();
-
-
         // we use special variable names here to avoid conflict when extracting data
         if(is_array($_data_)) {
             extract($_data_, EXTR_PREFIX_SAME, 'data');
@@ -45,7 +57,7 @@ class PostRender
         ob_start();
         ob_implicit_flush(false);
 
-        require(__DIR__ . '/../views/' . $_viewFile_ . '.php');
+        require(__DIR__ . '/../../../../blog/views/' . $_viewFile_ . '.php');
 
         return ob_get_clean();
     }

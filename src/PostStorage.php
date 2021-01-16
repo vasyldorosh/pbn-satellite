@@ -5,6 +5,14 @@ namespace Vasyldorosh\PbnSatellite;
 class PostStorage
 {
     /**
+     * @return string
+     */
+    private function getDomain(): string
+    {
+        return $_SERVER['HTTP_HOST'];
+    }
+
+    /**
      * @return array
      */
     public function getPosts(): array
@@ -19,13 +27,5 @@ class PostStorage
     public function getPost(string $alias): array
     {
         return (new PostApi)->getPost($this->getDomain(), $alias);
-    }
-
-    /**
-     * @return string
-     */
-    private function getDomain(): string
-    {
-        return $_SERVER['HTTP_HOST'];
     }
 }

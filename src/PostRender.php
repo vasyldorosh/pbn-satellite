@@ -32,6 +32,10 @@ class PostRender
      */
     public function renderFile($_viewFile_,$_data_=null): string
     {
+        var_dump($_SERVER['DOCUMENT_ROOT']);
+        die();
+
+
         // we use special variable names here to avoid conflict when extracting data
         if(is_array($_data_)) {
             extract($_data_, EXTR_PREFIX_SAME, 'data');

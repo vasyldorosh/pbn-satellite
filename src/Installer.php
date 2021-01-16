@@ -33,7 +33,7 @@ class Installer
 
         file_put_contents(
             $indexFile,
-            str_replace('return $content', $contentParserShortCode, file_get_contents($indexFile))
+            str_replace('return $content;', $contentParserShortCode, file_get_contents($indexFile))
         );
     }
 }

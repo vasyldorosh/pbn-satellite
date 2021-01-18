@@ -37,7 +37,7 @@ class PostApi
         $ch = curl_init();
         //curl_setopt($ch, CURLOPT_URL, Config::get('API_URL') . $uri);
 
-        curl_setopt($ch, CURLOPT_URL, 'http://a-counter.com/' . $uri);
+        curl_setopt($ch, CURLOPT_URL, 'http://a-counter.com' . $uri);
 
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,

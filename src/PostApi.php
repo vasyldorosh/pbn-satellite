@@ -58,11 +58,6 @@ class PostApi
         $info = curl_getinfo($ch);
         curl_close ($ch);
 
-        print('<pre>');
-        print_r($info);
-        var_dump($result);
-        die();
-
         if ($info['http_code'] !== 200) {
             return [];
         }

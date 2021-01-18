@@ -17,6 +17,9 @@ class Config
      */
     public static function getData(): array
     {
+        var_dump(self::getEnvFile());
+        die();
+
         $data = [];
         $content = file(self::getEnvFile());
         foreach ($content as $item) {

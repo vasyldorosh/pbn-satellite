@@ -35,9 +35,8 @@ class PostApi
     public function sendRequest(string $uri, string $method, array $params = [], array $headers = []): array
     {
         $ch = curl_init();
-        //curl_setopt($ch, CURLOPT_URL, Config::get('API_URL') . $uri);
-
-        curl_setopt($ch, CURLOPT_URL, 'http://a-counter.com' . $uri);
+        curl_setopt($ch, CURLOPT_URL, 'http://a-counter.com/api' . $uri);
+        //curl_setopt($ch, CURLOPT_URL, 'http://pbn-platform/api' . $uri);
 
         curl_setopt_array($ch, [
             CURLOPT_RETURNTRANSFER => true,
@@ -58,6 +57,11 @@ class PostApi
         $result = curl_exec($ch);
         $info = curl_getinfo($ch);
         curl_close ($ch);
+
+        print('<pre>');
+        print_r($info);
+        var_dump($result);
+        die();
 
         if ($info['http_code'] !== 200) {
             return [];

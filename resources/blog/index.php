@@ -6,15 +6,22 @@ use Vasyldorosh\PbnSatellite\PostStorage;
 use Vasyldorosh\PbnSatellite\PostRender;
 
 $alias = isset($_GET['alias']) ? $_GET['alias'] : null;
-$post = $alias ? ((new PostStorage)->getPost($_GET['alias'])) : null;
-if (empty($post)) {
-    header("HTTP/1.0 404 Not Found");
-    echo (new PostRender)->renderItem([
-        'title' => 404,
-        'seo_title' => 404,
-        'seo_description' => 404,
-        'content' => 'Page not found',
-    ]);
+
+if (empty($alias)) {
+    $items = (new PostStorage)->getPosts();
+    echo (new PostRender)->renderList($items);
 } else {
-    echo (new PostRender)->renderItem($post);
+
+    $post = $alias ? ((new PostStorage)->getPost($_GET['alias'])) : null;
+    if (empty($post)) {
+        header("HTTP/1.0 404 Not Found");
+        echo (new PostRender)->renderItem([
+            'title' => 404,
+            'seo_title' => 404,
+            'seo_description' => 404,
+            'content' => 'Page not found',
+        ]);
+    } else {
+        echo (new PostRender)->renderItem($post);
+    }
 }
